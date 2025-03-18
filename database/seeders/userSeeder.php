@@ -15,41 +15,54 @@ class userSeeder extends Seeder
     public function run(): void
     {
         User::Create( [
-            'name' => 'Admin Super',
-            'email' => 'adminsuper@gmail.com',
-            'nopol' => '2055201058NOPOL',
-            'no_rangka' => '2055201058RANGKA',
-            'no_hp' => '087880182823',
-            'level_id' => '1',
-            'tipe_mobil' => 'HONDA BRIO RS',
-            'alamat' => 'Cengkareng Jakarta Barat',
-            'password' => Hash::make(123456789),
-
-        ]);
-        User::Create( [
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'nopol' => '2055201058NOPOL2',
-            'no_rangka' => '2055201058RANGKA2',
-            'no_hp' => '087880182823',
-            'level_id' => '2',
-            'tipe_mobil' => 'HONDA YARIS',
-            'alamat' => 'Cengkareng Jakarta Pusat',
+            'nip' => '00001',
+            'level_id' => '1',
             'password' => Hash::make(123456789),
 
         ]);
         User::Create( [
-            'name' => 'Customer',
-            'email' => 'customer@gmail.com',
-            'nopol' => '2055201058NOPOL3',
-            'no_rangka' => '2055201058RANGKA3',
-            'no_hp' => '087880182823',
-            'level_id' => '1',
-            'tipe_mobil' => 'HONDA BRV',
-            'alamat' => 'Cengkareng Jakarta Timur',
+            'name' => 'Kepala Produksi',
+            'email' => 'kepalaproduksi@gmail.com',
+            'nip' => '00002',
+            'level_id' => '2',
             'password' => Hash::make(123456789),
 
         ]);
+        User::Create( [
+            'name' => 'Operator Transfer Oem',
+            'email' => 'operatoroem@gmail.com',
+            'nip' => '00003',
+            'level_id' => '3',
+            'password' => Hash::make(123456789),
+
+        ]);
+        User::Create( [
+            'name' => 'Operator Transfer Spin On',
+            'email' => 'operatorspinon@gmail.com',
+            'nip' => '00004',
+            'level_id' => '4',
+            'password' => Hash::make(123456789),
+
+        ]);
+        User::Create( [
+            'name' => 'Operator Transfer Set',
+            'email' => 'operatorset@gmail.com',
+            'nip' => '00005',
+            'level_id' => '5',
+            'password' => Hash::make(123456789),
+
+        ]);
+        User::Create( [
+            'name' => 'Operator Transfer Mesin Latex',
+            'email' => 'operatormesinlatex@gmail.com',
+            'nip' => '00006',
+            'level_id' => '6',
+            'password' => Hash::make(123456789),
+
+        ]);
+
 
 
 

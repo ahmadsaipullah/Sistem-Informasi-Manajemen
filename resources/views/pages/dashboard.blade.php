@@ -1,5 +1,5 @@
 @extends('layouts.template_default')
-@section('title', 'Andira Jasa Semesta')
+@section('title', 'Pt Selamat Sempurna Tbk')
 @section('dashboard', 'active ')
 @section('content')
     <div class="content-wrapper">
@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Selamat Datang, <span class="btn btn-xs btn-success font-italic">{{ auth()->user()->name }}</span> Di Andira Jasa Semesta</h1>
+                        <h1 class="m-0">Selamat Datang, <span class="btn btn-xs btn-success font-italic">{{ auth()->user()->name }}</span> Di Pt Selamat Sempurna Tbk</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -80,7 +80,7 @@
 
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-12 mb-4">
-                                <h1 class="text-center text-bold">INFORMASI KP DAN SKRIPSI</h1>
+                                <h1 class="text-center text-bold">Pt Selamat Sempurna Tbk </h1>
                             </div>
 
                 @endif

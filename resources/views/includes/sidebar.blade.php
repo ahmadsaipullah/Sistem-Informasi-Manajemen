@@ -1,29 +1,33 @@
-  <!-- Main Sidebar Container -->
-  <style>
-    .sidebar-red {
-    background-color: #1b1c3c; /* Warna merah */
-}
+<!-- Main Sidebar Container -->
+<style>
+    .sidebar-blue {
+        background-color: #2C3E50; /* Warna biru tua */
+    }
 
-.sidebar-red .nav-link {
-    color: #ffffff; /* Warna teks putih */
-}
+    .sidebar-blue .nav-link {
+        color: #ECF0F1; /* Warna teks putih */
+        border: 2px solid transparent; /* Awalnya tanpa border */
+        transition: all 0.3s ease-in-out;
+    }
 
-.sidebar-red .nav-link:hover {
-    background-color: #1b1c3c; /* Warna merah tua saat hover */
-}
+    .sidebar-blue .nav-link:hover {
+        border: 2px solid #3498DB; /* Outline biru saat hover */
+        background-color: transparent; /* Background tetap sama */
+        color: #ffffff;
+    }
 
-.sidebar-red .brand-link {
-    border-bottom: 1px solid #1b1c3c; /* Garis bawah merah tua */
-}
-  </style>
+    .sidebar-blue .brand-link {
+        border-bottom: 1px solid #3498DB; /* Garis bawah biru */
+    }
+</style>
 
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-red elevation-4">
+<aside class="main-sidebar sidebar-blue elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link">
         <img src="{{ asset('assets/img/logoft.png') }}" alt="Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8; border: 2px solid white;">
-        <span class="brand-text font-weight-light text-white">Andira Jasa Semesta</span>
+        <span class="brand-text font-weight-light text-white">Selamat Sempurna</span>
     </a>
 
     <!-- Sidebar -->
@@ -50,8 +54,6 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
                     <a href="{{ route('dashboard') }}" class="nav-link @yield('dashboard')">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -65,7 +67,7 @@
                     <li class="nav-header">Menu</li>
                 @endif
                 @if (auth()->user()->level_id == 1)
-                    <li class="nav-header">Admin Super</li>
+                    <li class="nav-header text-white">Admin Super</li>
                     <li class="nav-item">
                         <a href="{{ route('admin.index') }}" class="nav-link @yield('admin')">
                             <i class="nav-icon ion ion-person-add"></i>
@@ -75,7 +77,5 @@
                 @endif
             </ul>
         </nav>
-        <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
 </aside>
