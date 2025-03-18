@@ -53,5 +53,11 @@ class User extends Authenticatable
         return $this->belongsTo(Level::class, 'level_id', 'id');
     }
 
+    public function OrderRequest()
+    {
+        return $this->hasMany(OrderRequest::class);
+
+    }
+
 
 }

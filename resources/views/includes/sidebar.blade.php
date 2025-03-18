@@ -74,6 +74,12 @@
                             <p>Admin</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('order_requests.index') }}" class="nav-link @yield('order_request')">
+                            <i class="nav-icon ion ion-person-add"></i>
+                            <p>Order Requests</p>
+                        </a>
+                    </li>
                 @endif
             </ul>
         </nav>
