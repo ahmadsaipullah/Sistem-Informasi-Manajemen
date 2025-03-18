@@ -80,7 +80,7 @@
                                                         <form action="{{ route('order_requests.destroy', $request->id) }}" method="POST" style="display:inline;" class="delete_confirm">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-xs">
+                                                            <button type="submit" class="btn btn-danger btn-sm">
                                                                 <i class="fa fa-trash"></i>
                                                             </button>
                                                         </form>
