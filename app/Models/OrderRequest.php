@@ -9,18 +9,29 @@ class OrderRequest extends Model
 {
     use HasFactory;
 
+    protected $table = 'order_requests';
 
     protected $fillable = [
-        'tanggal',
-        'kode_product',
+        'kode_komponen_id',
         'operator_id',
-        'nama_komponen',
         'jumlah',
         'jenis_komponen',
         'status',
     ];
 
-    public function operator() {
+    /**
+     * Relasi ke tabel komponens.
+     */
+    public function komponen()
+    {
+        return $this->belongsTo(Komponen::class, 'kode_komponen_id');
+    }
+
+    /**
+     * Relasi ke tabel users (operator).
+     */
+    public function operator()
+    {
         return $this->belongsTo(User::class, 'operator_id');
     }
 }

@@ -80,6 +80,12 @@
                             <p>Order Requests</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('komponen.index') }}" class="nav-link @yield('komponen')">
+                            <i class="nav-icon ion ion-person-add"></i>
+                            <p>Master Komponen</p>
+                        </a>
+                    </li>
                 @endif
             </ul>
         </nav>

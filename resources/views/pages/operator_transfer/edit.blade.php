@@ -1,5 +1,5 @@
 <!-- Edit Modal -->
-<div class="modal fade" id="modal-edit-{{$request->id}}" tabindex="-1" aria-labelledby="modalEditLabel{{$request->id}}" aria-hidden="true">
+<div class="modal fade" id="modal-edit{{$request->id}}" tabindex="-1" aria-labelledby="modalEditLabel{{$request->id}}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary">
@@ -13,7 +13,6 @@
                     @csrf
                     @method('PUT')
 
-                    <!-- Kode Komponen -->
                     <div class="form-group">
                         <label for="edit_kode_komponen_id_{{$request->id}}">Kode Komponen</label>
                         <select class="form-control kode-komponen" name="kode_komponen_id" id="edit_kode_komponen_id_{{$request->id}}" data-target="edit_nama_komponen_{{$request->id}}" required>
@@ -27,13 +26,11 @@
                         </select>
                     </div>
 
-                    <!-- Nama Komponen (readonly) -->
                     <div class="form-group">
                         <label for="edit_nama_komponen_{{$request->id}}">Nama Komponen</label>
-                        <input type="text" class="form-control nama-komponen" id="edit_nama_komponen_{{$request->id}}" name="nama_komponen" value="" readonly>
+                        <input type="text" class="form-control nama-komponen" id="edit_nama_komponen_{{$request->id}}" name="nama_komponen" value="{{ $request->nama_komponen }}" readonly>
                     </div>
 
-                    <!-- Operator -->
                     <div class="form-group">
                         <label for="edit_operator_id_{{$request->id}}">Operator</label>
                         <select class="form-control" name="operator_id" id="edit_operator_id_{{$request->id}}" required>
@@ -43,13 +40,11 @@
                         </select>
                     </div>
 
-                    <!-- Jumlah -->
                     <div class="form-group">
                         <label for="edit_jumlah_{{$request->id}}">Jumlah</label>
                         <input type="number" class="form-control" name="jumlah" id="edit_jumlah_{{$request->id}}" value="{{ $request->jumlah }}" required>
                     </div>
 
-                    <!-- Jenis Komponen -->
                     <div class="form-group">
                         <label for="edit_jenis_komponen_{{$request->id}}">Jenis Komponen</label>
                         <select class="form-control" name="jenis_komponen" id="edit_jenis_komponen_{{$request->id}}" required>
@@ -58,7 +53,6 @@
                         </select>
                     </div>
 
-                    <!-- Status -->
                     <div class="form-group">
                         <label for="edit_status_{{$request->id}}">Status</label>
                         <select class="form-control" name="status" id="edit_status_{{$request->id}}" required>
@@ -77,27 +71,11 @@
 
 <!-- Script untuk Mengisi Nama Komponen Otomatis -->
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Ketika modal dibuka, pastikan input nama_komponen otomatis terisi
-        document.querySelectorAll('.modal.fade').forEach(modal => {
-            modal.addEventListener('shown.bs.modal', function() {
-                let select = modal.querySelector('.kode-komponen');
-                let targetInput = modal.querySelector('.nama-komponen');
-                let selectedOption = select.options[select.selectedIndex];
-
-                if (selectedOption) {
-                    targetInput.value = selectedOption.getAttribute('data-nama') || '';
-                }
-            });
-        });
-
-        // Ketika kode komponen berubah, update nama komponen
-        document.querySelectorAll('.kode-komponen').forEach(select => {
-            select.addEventListener('change', function() {
-                let selectedOption = this.options[this.selectedIndex];
-                let targetInput = document.getElementById(this.getAttribute('data-target'));
-                targetInput.value = selectedOption.getAttribute('data-nama');
-            });
+    document.querySelectorAll('.kode-komponen').forEach(select => {
+        select.addEventListener('change', function () {
+            let selectedOption = this.options[this.selectedIndex];
+            let targetInput = document.getElementById(this.getAttribute('data-target'));
+            targetInput.value = selectedOption.getAttribute('data-nama');
         });
     });
 </script>

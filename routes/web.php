@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\Admin\KomponenController;
 use App\Http\Controllers\Admin\{adminController,dashboardController, OrderRequestController};
 
 
@@ -37,6 +38,8 @@ Route::middleware(['AdminSuper'])->group( function(){
 Route::resource('/admin', adminController::class);
 // crud admin
 Route::resource('/order_requests', OrderRequestController::class);
+// crud komponen
+Route::resource('/komponen', KomponenController::class);
 
 
 });

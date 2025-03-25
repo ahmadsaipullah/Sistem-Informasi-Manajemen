@@ -24,12 +24,7 @@ class levelSeeder extends Seeder
         ]);
        Level::Create( [
 
-            'level' => 'Operator Transfer Oem'
-        ]);
-
-       Level::Create( [
-
-            'level' => 'Operator Transfer Spin On'
+            'level' => 'Operator Transfer'
         ]);
 
        Level::Create( [

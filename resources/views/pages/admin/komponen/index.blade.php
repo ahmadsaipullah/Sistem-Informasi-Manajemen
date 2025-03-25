@@ -1,6 +1,6 @@
 @extends('layouts.template_default')
-@section('title', 'Permintaan Komponen')
-@section('order_request', 'active')
+@section('title', 'Komponen Komponen')
+@section('komponen', 'active')
 @section('content')
     <div class="content-wrapper">
         @include('sweetalert::alert')
@@ -9,12 +9,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Permintaan Komponen</h1>
+                        <h1>Komponen Komponen</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Permintaan Komponen</li>
+                            <li class="breadcrumb-item active">Komponen Komponen</li>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createModal">
-                                    <i class="fa fa-plus"></i> Tambah Permintaan
+                                    <i class="fa fa-plus"></i> Tambah Komponen
                                 </button>
                             </div>
 
@@ -39,36 +39,20 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Tanggal</th>
-                                                <th>Kode Produk</th>
-                                                <th>Operator</th>
+                                                <th>Kode Komponen</th>
                                                 <th>Nama Komponen</th>
-                                                <th>Jumlah</th>
-                                                <th>Jenis</th>
-                                                <th>Status</th>
+                                                <th>Stok</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($orders as $request)
+                                            @foreach ($komponens as $request)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($request->created_at)->translatedFormat('d F Y') }}</td>
-                                                    <td>{{ $request->komponen->kode_komponen }}</td>
-                                                    <td>{{ $request->operator->name }}</td>
-                                                    <td>{{ $request->komponen->nama_komponen  }}</td>
-                                                    <td>{{ $request->jumlah }}</td>
-                                                    <td>{{ $request->jenis_komponen }}</td>
-                                                    <td>
-                                                        @if ($request->status == 'pending')
-                                                            <span class="badge badge-warning">Pending</span>
-                                                        @elseif ($request->status == 'selesai')
-                                                            <span class="badge badge-success">Selesai</span>
-                                                        @elseif ($request->status == 'diproses')
-                                                            <span class="badge badge-primary">Proses</span>
-                                                        @else
-                                                            <span class="badge badge-secondary">Null</span>
-                                                        @endif
-                                                    </td>
+                                                    <td>{{ $request->kode_komponen }}</td>
+                                                    <td>{{ $request->nama_komponen }}</td>
+                                                    <td>{{ $request->stok }}</td>
                                                     <td>
                                                         <!-- Tombol Edit -->
                                                         <a href="#" class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#modal-edit-{{ $request->id }}">
@@ -76,7 +60,7 @@
                                                         </a>
 
                                                         <!-- Tombol Hapus -->
-                                                        <form action="{{ route('order_requests.destroy', $request->id) }}" method="POST" style="display:inline;" class="delete_confirm">
+                                                        <form action="{{ route('komponen.destroy', $request->id) }}" method="POST" style="display:inline;" class="delete_confirm">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm">
@@ -86,7 +70,7 @@
                                                     </td>
                                                 </tr>
 
-                                                @include('pages.admin.order_requests.edit', ['request' => $request])
+                                                @include('pages.admin.komponen.edit', ['request' => $request])
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -99,5 +83,5 @@
         </section>
     </div>
 
-    @include('pages.admin.order_requests.create')
+    @include('pages.admin.komponen.create')
 @endsection

@@ -31,18 +31,10 @@ class userSeeder extends Seeder
 
         ]);
         User::Create( [
-            'name' => 'Operator Transfer Oem',
-            'email' => 'operatoroem@gmail.com',
+            'name' => 'Operator Transfer',
+            'email' => 'operatortransfer@gmail.com',
             'nip' => '00003',
             'level_id' => '3',
-            'password' => Hash::make(123456789),
-
-        ]);
-        User::Create( [
-            'name' => 'Operator Transfer Spin On',
-            'email' => 'operatorspinon@gmail.com',
-            'nip' => '00004',
-            'level_id' => '4',
             'password' => Hash::make(123456789),
 
         ]);
@@ -50,7 +42,7 @@ class userSeeder extends Seeder
             'name' => 'Operator Transfer Set',
             'email' => 'operatorset@gmail.com',
             'nip' => '00005',
-            'level_id' => '5',
+            'level_id' => '4',
             'password' => Hash::make(123456789),
 
         ]);
@@ -58,7 +50,7 @@ class userSeeder extends Seeder
             'name' => 'Operator Transfer Mesin Latex',
             'email' => 'operatormesinlatex@gmail.com',
             'nip' => '00006',
-            'level_id' => '6',
+            'level_id' => '5',
             'password' => Hash::make(123456789),
 
         ]);
