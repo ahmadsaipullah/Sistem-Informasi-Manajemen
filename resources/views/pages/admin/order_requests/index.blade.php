@@ -59,21 +59,24 @@
                                                     <td>{{ $request->jumlah }}</td>
                                                     <td>{{ $request->jenis_komponen }}</td>
                                                     <td>
-                                                        @if ($request->status == 'pending')
-                                                            <span class="badge badge-warning">Pending</span>
-                                                        @elseif ($request->status == 'selesai')
-                                                            <span class="badge badge-success">Selesai</span>
-                                                        @elseif ($request->status == 'diproses')
-                                                            <span class="badge badge-primary">Proses</span>
-                                                        @else
-                                                            <span class="badge badge-secondary">Null</span>
-                                                        @endif
+                                                        <select class="form-select form-select-sm status-select"
+        data-id="{{ $request->id }}"
+        {{ $request->status == 'diproses' ? 'disabled' : '' }}>
+    <option value="pending" {{ $request->status == 'pending' ? 'selected' : '' }}>Pending</option>
+    <option value="diproses" {{ $request->status == 'diproses' ? 'selected' : '' }}>Diproses</option>
+</select>
+
                                                     </td>
+
                                                     <td>
+                                                        <!-- Tombol Edit -->
+                                                        @if($request->status != 'diproses')
                                                         <!-- Tombol Edit -->
                                                         <a href="#" class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#modal-edit-{{ $request->id }}">
                                                             <i class="fa fa-pen"></i>
                                                         </a>
+                                                    @endif
+
 
                                                         <!-- Tombol Hapus -->
                                                         <form action="{{ route('order_requests.destroy', $request->id) }}" method="POST" style="display:inline;" class="delete_confirm">
@@ -98,6 +101,73 @@
             </div>
         </section>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function setStatusColor(select) {
+                const status = select.value;
+                select.classList.remove('bg-warning', 'bg-primary', 'text-white');
+
+                if (status === 'pending') {
+                    select.classList.add('bg-warning');
+                } else if (status === 'diproses') {
+                    select.classList.add('bg-primary', 'text-white');
+                }
+            }
+
+            const selects = document.querySelectorAll('.status-select');
+
+            selects.forEach(select => {
+                // Warna awal
+                setStatusColor(select);
+
+                select.addEventListener('change', function (e) {
+                    const status = this.value;
+                    const id = this.getAttribute('data-id');
+                    const el = this;
+
+                    fetch(`/admin/order_requests/${id}/update-status`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        body: JSON.stringify({ status: status })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            setStatusColor(el);
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil',
+                                text: data.message,
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Gagal',
+                                text: 'Gagal mengupdate status.'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Terjadi kesalahan koneksi.'
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+
+
 
     @include('pages.admin.order_requests.create')
 @endsection

@@ -48,8 +48,8 @@
                         <label for="jenis_komponen">Jenis Komponen</label>
                         <select class="form-control" name="jenis_komponen" required>
                             <option value="" disabled selected>-- Pilih Komponen --</option>
-                            <option value="oem">OEM</option>
-                            <option value="spin on">Spin On</option>
+                            <option value="OEM">OEM</option>
+                            <option value="Spin On">Spin On</option>
                         </select>
                     </div>
 

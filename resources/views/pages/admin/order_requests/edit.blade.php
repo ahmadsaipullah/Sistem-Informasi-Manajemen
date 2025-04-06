@@ -53,20 +53,20 @@
                     <div class="form-group">
                         <label for="edit_jenis_komponen_{{$request->id}}">Jenis Komponen</label>
                         <select class="form-control" name="jenis_komponen" id="edit_jenis_komponen_{{$request->id}}" required>
-                            <option value="oem" {{ $request->jenis_komponen == 'oem' ? 'selected' : '' }}>OEM</option>
-                            <option value="spin on" {{ $request->jenis_komponen == 'spin on' ? 'selected' : '' }}>Spin On</option>
+                            <option value="OEM" {{ $request->jenis_komponen == 'OEM' ? 'selected' : '' }}>OEM</option>
+                            <option value="Spin On" {{ $request->jenis_komponen == 'Spin On' ? 'selected' : '' }}>Spin On</option>
                         </select>
                     </div>
 
                     <!-- Status -->
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="edit_status_{{$request->id}}">Status</label>
                         <select class="form-control" name="status" id="edit_status_{{$request->id}}" required>
                             <option value="pending" {{ $request->status == 'pending' ? 'selected' : '' }}>Pending</option>
                             <option value="selesai" {{ $request->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
                             <option value="diproses" {{ $request->status == 'diproses' ? 'selected' : '' }}>Diproses</option>
                         </select>
-                    </div>
+                    </div> --}}
 
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </form>

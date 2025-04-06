@@ -15,11 +15,5 @@ class dashboardController extends Controller
         return view('pages.dashboard', compact('user'));
     }
 
-    public function error()
-    {
-        return view('error.401');
-    }
-
-
 
 }

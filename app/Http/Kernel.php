@@ -65,8 +65,9 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'AdminSuper' => \App\Http\Middleware\AdminSuperMiddleware ::class,
-        'Admin' => \App\Http\Middleware\adminMiddleware ::class,
-        'User' => \App\Http\Middleware\usersMiddleware ::class,
+        'AdminSuper' => \App\Http\Middleware\AdminSuperMiddleware::class,
+        'KepalaProduksi' => \App\Http\Middleware\KepalaProduksiMiddleware::class,
+        'OperatorTransfer' => \App\Http\Middleware\OperatorTransferMiddleware::class,
+        'OperatorTransferSet' => \App\Http\Middleware\OperatorTransferSetMiddleware::class,
     ];
 }

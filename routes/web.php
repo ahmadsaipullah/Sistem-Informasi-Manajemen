@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\Admin\mesinController;
 use App\Http\Controllers\Admin\KomponenController;
 use App\Http\Controllers\Admin\{adminController,dashboardController, OrderRequestController};
-
+use App\Http\Controllers\orderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,9 @@ use App\Http\Controllers\Admin\{adminController,dashboardController, OrderReques
 
 require __DIR__.'/auth.php';
 
-Route::get('/error-page', [dashboardController::class,'error'])->name('error');
+Route::get('/error', function () {
+    return view('pages.error'); // Buat halaman error 403
+})->name('error');
 
 Route::group(['middleware' => 'auth', 'PreventBackHistory'], function () {
 
@@ -36,18 +39,13 @@ Route::middleware(['AdminSuper'])->group( function(){
 
 // crud admin
 Route::resource('/admin', adminController::class);
-// crud admin
+// crud order Request
 Route::resource('/order_requests', OrderRequestController::class);
+Route::post('/admin/order_requests/{id}/update-status', [App\Http\Controllers\Admin\OrderRequestController::class, 'updateStatus'])->name('order_requests.updateStatus');
 // crud komponen
 Route::resource('/komponen', KomponenController::class);
-
-
-});
-
-
-
-Route::middleware(['Admin'])->group( function(){
-
+// crud mesin
+Route::resource('/mesin', mesinController::class);
 
 
 
@@ -55,17 +53,31 @@ Route::middleware(['Admin'])->group( function(){
 
 
 
-Route::middleware(['User'])->group( function(){
+Route::middleware(['KepalaProduksi'])->group( function(){
+// crud komponen
+Route::resource('/komponen', KomponenController::class);
+// crud mesin
+Route::resource('/mesin', mesinController::class);
 
+
+});
+
+
+
+Route::middleware(['OperatorTransfer'])->group( function(){
+// crud order Request
+Route::resource('/order_requests', OrderRequestController::class);
+Route::post('/admin/order_requests/{id}/update-status', [App\Http\Controllers\Admin\OrderRequestController::class, 'updateStatus'])->name('order_requests.updateStatus');
 
 
 });
 
 
-
-
-
+Route::middleware(['OperatorTransferSet'])->group( function(){
+// menampilkan order request
+Route::get('/order', [orderController::class, 'index'])->name('order.index');
 
 
 });
 
+});

@@ -71,32 +71,47 @@ class OrderRequestController extends Controller
             'operator_id' => ['required', 'exists:users,id'],
             'jumlah' => ['required', 'integer'],
             'jenis_komponen' => ['required', 'string'],
-            'status' => ['required', 'string'],
         ]);
 
         $order = OrderRequest::findOrFail($id);
-        $komponen = Komponen::findOrFail($order->kode_komponen_id);
-
-        // Hitung selisih jumlah sebelum dan setelah update
         $jumlah_lama = $order->jumlah;
         $jumlah_baru = $request->jumlah;
-        $selisih = $jumlah_baru - $jumlah_lama;
 
-        // Jika jumlah bertambah, pastikan stok mencukupi
-        if ($selisih > 0 && $selisih > $komponen->stok) {
-            Alert::warning('Peringatan', 'Stok tidak mencukupi untuk perubahan ini!');
-            return redirect()->back()->withInput();
+        $komponen_lama = Komponen::findOrFail($order->kode_komponen_id);
+        $komponen_baru = Komponen::findOrFail($request->kode_komponen_id);
+
+        if ($request->kode_komponen_id != $order->kode_komponen_id) {
+            // 1. Kembalikan stok lama
+            $komponen_lama->stok += $jumlah_lama;
+            $komponen_lama->save();
+
+            // 2. Cek stok baru
+            if ($jumlah_baru > $komponen_baru->stok) {
+                Alert::warning('Peringatan', 'Stok tidak mencukupi untuk komponen baru!');
+                return redirect()->back()->withInput();
+            }
+
+            // 3. Kurangi stok baru
+            $komponen_baru->stok -= $jumlah_baru;
+            $komponen_baru->save();
+        } else {
+            // Komponen tidak berubah, cukup update selisih
+            $selisih = $jumlah_baru - $jumlah_lama;
+
+            if ($selisih > 0 && $selisih > $komponen_lama->stok) {
+                Alert::warning('Peringatan', 'Stok tidak mencukupi untuk perubahan jumlah!');
+                return redirect()->back()->withInput();
+            }
+
+            $komponen_lama->stok -= $selisih;
+            $komponen_lama->save();
         }
-
-        // Perbarui stok berdasarkan perubahan jumlah
-        $komponen->stok -= $selisih;
-        $komponen->save();
 
         // Update data order
         $updated = $order->update($request->all());
 
         if ($updated) {
-            Alert::success('Sukses', 'Data berhasil diupdate dan stok telah diperbarui!');
+            Alert::success('Sukses', 'Data berhasil diupdate dan stok diperbarui!');
         } else {
             Alert::error('Gagal', 'Data gagal diupdate!');
         }
@@ -121,4 +136,23 @@ class OrderRequestController extends Controller
 
         return redirect()->route('order_requests.index');
     }
+
+
+
+    public function updateStatus(Request $request, $id)
+{
+    $request->validate([
+        'status' => 'required|string|in:pending,selesai,diproses',
+    ]);
+
+    $order = OrderRequest::findOrFail($id);
+    $order->status = $request->status;
+    $order->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Status berhasil diupdate!'
+    ]);
+}
+
 }

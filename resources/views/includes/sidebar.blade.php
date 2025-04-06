@@ -60,11 +60,41 @@
                         <p> Dashboard</p>
                     </a>
                 </li>
+                @if (auth()->user()->level_id == 5)
+                    <li class="nav-header text-white">Menu</li>
+                @endif
+                @if (auth()->user()->level_id == 4)
+                    <li class="nav-header text-white">Menu</li>
+                    <li class="nav-item">
+                        <a href="{{ route('order.index') }}" class="nav-link @yield('order_request')">
+                            <i class="nav-icon ion ion-person-add"></i>
+                            <p>Order</p>
+                        </a>
+                    </li>
+                @endif
                 @if (auth()->user()->level_id == 3)
-                    <li class="nav-header">Menu</li>
+                    <li class="nav-header text-white">Menu</li>
+                    <li class="nav-item">
+                        <a href="{{ route('order_requests.index') }}" class="nav-link @yield('order_request')">
+                            <i class="nav-icon ion ion-person-add"></i>
+                            <p>Order Requests</p>
+                        </a>
+                    </li>
                 @endif
                 @if (auth()->user()->level_id == 2)
-                    <li class="nav-header">Menu</li>
+                    <li class="nav-header text-white">Menu</li>
+                    <li class="nav-item">
+                        <a href="{{ route('komponen.index') }}" class="nav-link @yield('komponen')">
+                            <i class="nav-icon ion ion-person-add"></i>
+                            <p>Master Komponen</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('mesin.index') }}" class="nav-link @yield('mesin')">
+                            <i class="nav-icon ion ion-person-add"></i>
+                            <p>Master Mesin</p>
+                        </a>
+                    </li>
                 @endif
                 @if (auth()->user()->level_id == 1)
                     <li class="nav-header text-white">Admin Super</li>
@@ -75,15 +105,21 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('order_requests.index') }}" class="nav-link @yield('order_request')">
-                            <i class="nav-icon ion ion-person-add"></i>
-                            <p>Order Requests</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{{ route('komponen.index') }}" class="nav-link @yield('komponen')">
                             <i class="nav-icon ion ion-person-add"></i>
                             <p>Master Komponen</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('mesin.index') }}" class="nav-link @yield('mesin')">
+                            <i class="nav-icon ion ion-person-add"></i>
+                            <p>Master Mesin</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('order_requests.index') }}" class="nav-link @yield('order_request')">
+                            <i class="nav-icon ion ion-person-add"></i>
+                            <p>Order Requests</p>
                         </a>
                     </li>
                 @endif
