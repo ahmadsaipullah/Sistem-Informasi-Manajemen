@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\orderController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\Admin\mesinController;
 use App\Http\Controllers\Admin\KomponenController;
+use App\Http\Controllers\Admin\WipKomponenController;
 use App\Http\Controllers\Admin\{adminController,dashboardController, OrderRequestController};
-use App\Http\Controllers\orderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,9 @@ Route::post('/admin/order_requests/{id}/update-status', [App\Http\Controllers\Ad
 Route::resource('/komponen', KomponenController::class);
 // crud mesin
 Route::resource('/mesin', mesinController::class);
+// wip komponen
+Route::resource('/wip_komponen', WipKomponenController::class);
+
 
 
 
@@ -76,6 +80,9 @@ Route::post('/admin/order_requests/{id}/update-status', [App\Http\Controllers\Ad
 Route::middleware(['OperatorTransferSet'])->group( function(){
 // menampilkan order request
 Route::get('/order', [orderController::class, 'index'])->name('order.index');
+// wip komponen
+Route::resource('/wip_komponen', WipKomponenController::class);
+
 
 
 });

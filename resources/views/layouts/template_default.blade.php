@@ -40,6 +40,23 @@
     <!-- ./wrapper -->
 
     @include('includes.script')
+    <script>
+        $(document).ready(function () {
+            $('.open-modal').click(function () {
+                var button = $(this);
+
+                $('#komponen_id').val(button.data('id'))
+                $('#kode_komponen').val(button.data('kode'))
+                $('#nama_komponen').val(button.data('nama'))
+                $('#operator').val(button.data('operator'))
+                $('#jumlah').val(button.data('jumlah'))
+                $('#jenis_komponen').val(button.data('jenis'))
+                $('#tanggal_deadline').val(button.data('dedline'))
+
+                $('#createModal').modal('show');
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -71,6 +71,13 @@
                             <p>Order</p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('wip_komponen.index') }}" class="nav-link @yield('wipkomponen')">
+                            <i class="nav-icon ion ion-person-add"></i>
+                            <p>Wip Komponen</p>
+                        </a>
+                    </li>
                 @endif
                 @if (auth()->user()->level_id == 3)
                     <li class="nav-header text-white">Menu</li>
@@ -120,6 +127,12 @@
                         <a href="{{ route('order_requests.index') }}" class="nav-link @yield('order_request')">
                             <i class="nav-icon ion ion-person-add"></i>
                             <p>Order Requests</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('wip_komponen.index') }}" class="nav-link @yield('wipkomponen')">
+                            <i class="nav-icon ion ion-person-add"></i>
+                            <p>Wip Komponen</p>
                         </a>
                     </li>
                 @endif

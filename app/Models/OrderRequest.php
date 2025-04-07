@@ -35,4 +35,10 @@ class OrderRequest extends Model
     {
         return $this->belongsTo(User::class, 'operator_id');
     }
+
+    public function WipKomponen()
+    {
+        return $this->hasMany(WipKomponen::class, 'komponen_id');
+
+    }
 }

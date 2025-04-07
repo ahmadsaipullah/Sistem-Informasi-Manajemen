@@ -15,4 +15,11 @@ class Mesin extends Model
         'kode_mesin',
         'nama_mesin',
     ];
+
+
+    public function WipKomponen()
+    {
+        return $this->hasMany(WipKomponen::class, 'mesin_id');
+
+    }
 }

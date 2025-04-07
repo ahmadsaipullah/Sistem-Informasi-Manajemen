@@ -63,34 +63,51 @@
                                                         {{ \Carbon\Carbon::parse($request->tanggal_dedline)->translatedFormat('d F Y') }}
                                                     </td>
                                                     <td>
+                                                        @if ($request->status == 'Selesai')
+                                                        <select class="form-select form-select-sm status-select"
+                                                                data-id="{{ $request->id }}"
+                                                                {{ in_array($request->status, ['diproses', 'Selesai']) ? 'disabled' : '' }}>
+                                                            <option value="pending" {{ $request->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                                            <option value="diproses" {{ $request->status == 'diproses' ? 'selected' : '' }}>Diproses</option>
+                                                            <option value="Selesai" {{ $request->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                                                        </select>
+                                                        @else
                                                         <select class="form-select form-select-sm status-select"
         data-id="{{ $request->id }}"
         {{ $request->status == 'diproses' ? 'disabled' : '' }}>
     <option value="pending" {{ $request->status == 'pending' ? 'selected' : '' }}>Pending</option>
     <option value="diproses" {{ $request->status == 'diproses' ? 'selected' : '' }}>Diproses</option>
 </select>
-
+                                                        @endif
                                                     </td>
+
 
                                                     <td>
-                                                        <!-- Tombol Edit -->
-                                                        @if($request->status != 'diproses')
-                                                        <!-- Tombol Edit -->
-                                                        <a href="#" class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#modal-edit-{{ $request->id }}">
-                                                            <i class="fa fa-pen"></i>
-                                                        </a>
-                                                    @endif
+                                                        @if(!in_array(strtolower($request->status), ['diproses', 'selesai']))
+                                                            <!-- Tombol Edit -->
+                                                            <a href="#" class="btn btn-warning btn-sm mx-2" data-toggle="modal" data-target="#modal-edit-{{ $request->id }}">
+                                                                <i class="fa fa-pen"></i>
+                                                            </a>
 
-
-                                                        <!-- Tombol Hapus -->
-                                                        <form action="{{ route('order_requests.destroy', $request->id) }}" method="POST" style="display:inline;" class="delete_confirm">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                            <!-- Tombol Hapus -->
+                                                            <form action="{{ route('order_requests.destroy', $request->id) }}" method="POST" style="display:inline;" class="delete_confirm">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        @else
+                                                            <!-- Jika status Diproses, tombol Edit dan Hapus disable -->
+                                                            <button class="btn btn-warning btn-sm mx-2" disabled>
+                                                                <i class="fa fa-pen"></i>
+                                                            </button>
+                                                            <button class="btn btn-danger btn-sm" disabled>
                                                                 <i class="fa fa-trash"></i>
                                                             </button>
-                                                        </form>
+                                                        @endif
                                                     </td>
+
                                                 </tr>
 
                                                 @include('pages.admin.order_requests.edit', ['request' => $request])
@@ -117,6 +134,8 @@
                     select.classList.add('bg-warning');
                 } else if (status === 'diproses') {
                     select.classList.add('bg-primary', 'text-white');
+                }else if (status === 'Selesai') {
+                    select.classList.add('bg-success', 'text-white');
                 }
             }
 
