@@ -32,6 +32,8 @@ class OrderRequestController extends Controller
             'operator_id' => ['required', 'exists:users,id'],
             'jumlah' => ['required', 'integer'],
             'jenis_komponen' => ['required', 'string'],
+            'tanggal_dedline' => ['required', 'date'],
+
         ]);
 
         // Ambil data komponen berdasarkan ID
@@ -71,6 +73,8 @@ class OrderRequestController extends Controller
             'operator_id' => ['required', 'exists:users,id'],
             'jumlah' => ['required', 'integer'],
             'jenis_komponen' => ['required', 'string'],
+            'tanggal_dedline' => ['required', 'date'],
+
         ]);
 
         $order = OrderRequest::findOrFail($id);

@@ -16,6 +16,7 @@ return new class extends Migration
         $table->foreignId('kode_komponen_id')->constrained('komponens')->onDelete('cascade');
         $table->foreignId('operator_id')->constrained('users')->onDelete('cascade');
         $table->integer('jumlah');
+        $table->date('tanggal_dedline');
         $table->string('jenis_komponen');
         $table->string('status')->default('pending');
         $table->timestamps();

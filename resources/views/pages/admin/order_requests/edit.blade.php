@@ -12,6 +12,11 @@
                 <form action="{{ route('order_requests.update', $request->id) }}" method="POST">
                     @csrf
                     @method('PUT')
+                    <!-- Tanggal Dedline -->
+                    <div class="form-group">
+                        <label for="edit_tanggal_dedline_{{$request->id}}">Tanggal Dedline</label>
+                        <input type="date" class="form-control" name="tanggal_dedline" id="edit_tanggal_dedline_{{$request->id}}" value="{{ $request->tanggal_dedline }}" required>
+                    </div>
 
                     <!-- Kode Komponen -->
                     <div class="form-group">
@@ -32,7 +37,7 @@
                         <label for="edit_nama_komponen_{{$request->id}}">Nama Komponen</label>
                         <input type="text" class="form-control nama-komponen" id="edit_nama_komponen_{{$request->id}}" name="nama_komponen" value="" readonly>
                     </div>
-
+@if(auth()->user()->level_id == 1)
                     <!-- Operator -->
                     <div class="form-group">
                         <label for="edit_operator_id_{{$request->id}}">Operator</label>
@@ -42,7 +47,9 @@
                             @endforeach
                         </select>
                     </div>
-
+                    @else
+                    <input type="hidden" name="operator_id" value="{{ auth()->user()->id }}">
+                    @endif
                     <!-- Jumlah -->
                     <div class="form-group">
                         <label for="edit_jumlah_{{$request->id}}">Jumlah</label>

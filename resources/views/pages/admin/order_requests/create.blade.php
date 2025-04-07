@@ -25,10 +25,16 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="tanggal_dedline">Tanggal Dedline</label>
+                        <input type="date" class="form-control" name="tanggal_dedline" id="tanggal_dedline" required>
+                    </div>
+
+
+                    <div class="form-group">
                         <label for="nama_komponen">Nama Komponen</label>
                         <input type="text" class="form-control" id="nama_komponen" name="nama_komponen" readonly>
                     </div>
-
+@if(auth()->user()->level_id == 1)
                     <div class="form-group">
                         <label for="operator_id">Operator</label>
                         <select class="form-control" name="operator_id" required>
@@ -38,7 +44,9 @@
                             @endforeach
                         </select>
                     </div>
-
+@else
+<input type="hidden" name="operator_id" value="{{ auth()->user()->id }}">
+@endif
                     <div class="form-group">
                         <label for="jumlah">Jumlah</label>
                         <input type="number" class="form-control" name="jumlah" required>

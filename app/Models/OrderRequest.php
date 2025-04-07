@@ -17,6 +17,7 @@ class OrderRequest extends Model
         'jumlah',
         'jenis_komponen',
         'status',
+        'tanggal_dedline',
     ];
 
     /**

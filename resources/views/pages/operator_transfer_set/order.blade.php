@@ -26,12 +26,13 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Tanggal</th>
+                                                <th>Tanggal Dibuat</th>
                                                 <th>Kode Produk</th>
                                                 <th>Operator</th>
                                                 <th>Nama Komponen</th>
                                                 <th>Jumlah</th>
                                                 <th>Jenis</th>
+                                                <th>Tanggal Dedline</th>
                                                 <th>Status</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -46,6 +47,9 @@
                                                     <td>{{ $request->komponen->nama_komponen  }}</td>
                                                     <td>{{ $request->jumlah }}</td>
                                                     <td>{{ $request->jenis_komponen }}</td>
+                                                    <td>
+                                                        {{ \Carbon\Carbon::parse($request->tanggal_dedline)->translatedFormat('d F Y') }}
+                                                    </td>
                                                     <td>
                                                         @if ($request->status == 'pending')
                                                             <span class="badge badge-warning">Pending</span>
