@@ -57,6 +57,39 @@
             });
         });
     </script>
+
+<script>
+    $(document).ready(function () {
+        $('.open-hasil').click(function () {
+            let btn = $(this);
+            $('#produksi_id').val(btn.data('id'));
+            $('#kode_komponen').val(btn.data('kode'));
+            $('#nama_komponen').val(btn.data('nama'));
+            $('#operator').val(btn.data('operator'));
+            $('#jenis_komponen').val(btn.data('jenis'));
+            $('#lokasi').val(btn.data('lokasi'));
+            $('#tanggal_in').val(formatTanggal(btn.data('dedline')));
+            $('#qty_in').val(btn.data('jumlah'));
+            $('#tanggal_out').val(formatTanggal(btn.data('tanggalout')));
+            $('#qty_out').val(btn.data('jumlahout'));
+
+            // Auto fill ke editable input (bisa diedit user)
+            $('#target').val(btn.data('jumlah'));
+            $('#hasil').val(btn.data('jumlahout'));
+
+            $('#createModal').modal('show');
+        });
+
+        function formatTanggal(date) {
+            if (!date) return '-';
+            let d = new Date(date);
+            return d.toLocaleDateString('id-ID');
+        }
+    });
+</script>
+
+
+
 </body>
 
 </html>

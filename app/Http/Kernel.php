@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'KepalaProduksi' => \App\Http\Middleware\KepalaProduksiMiddleware::class,
         'OperatorTransfer' => \App\Http\Middleware\OperatorTransferMiddleware::class,
         'OperatorTransferSet' => \App\Http\Middleware\OperatorTransferSetMiddleware::class,
+        'OperatorMesinLatex' => \App\Http\Middleware\OperatorMesinLatexMiddleware::class,
     ];
 }

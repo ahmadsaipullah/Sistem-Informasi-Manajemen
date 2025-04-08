@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class OperatorMesinLatexMiddleware
@@ -15,6 +16,15 @@ class OperatorMesinLatexMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (Auth::check() && Auth::user()->level_id == 5) {
+            return $next($request);
+        }elseif (Auth::check() && Auth::user()->level_id == 2) {
+            return $next($request);
+        }elseif (Auth::check() && Auth::user()->level_id == 1) {
+            return $next($request);
+        }else{
+
+            return redirect()->route('error');
+        }
     }
 }

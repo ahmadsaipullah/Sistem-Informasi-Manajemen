@@ -60,21 +60,36 @@
                         <p> Dashboard</p>
                     </a>
                 </li>
+
                 @if (auth()->user()->level_id == 5)
                     <li class="nav-header text-white">Menu</li>
+                    <li class="nav-item">
+                        <a href="{{ route('hasil-wip.index') }}" class="nav-link @yield('hasilwip')">
+                            <i class="nav-icon fas fa-industry"></i>
+                            <p>Hasil Wip</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('hasil-produksi.index') }}" class="nav-link @yield('hasil-produksi')">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>Hasil Produksi</p>
+                        </a>
+                    </li>
+
                 @endif
                 @if (auth()->user()->level_id == 4)
                     <li class="nav-header text-white">Menu</li>
                     <li class="nav-item">
                         <a href="{{ route('order.index') }}" class="nav-link @yield('order_request')">
-                            <i class="nav-icon ion ion-person-add"></i>
+                            <i class="nav-icon fas fa-shopping-cart"></i>
                             <p>Order</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{ route('wip_komponen.index') }}" class="nav-link @yield('wipkomponen')">
-                            <i class="nav-icon ion ion-person-add"></i>
+                            <i class="nav-icon fas fa-boxes"></i>
                             <p>Wip Komponen</p>
                         </a>
                     </li>
@@ -83,7 +98,7 @@
                     <li class="nav-header text-white">Menu</li>
                     <li class="nav-item">
                         <a href="{{ route('order_requests.index') }}" class="nav-link @yield('order_request')">
-                            <i class="nav-icon ion ion-person-add"></i>
+                            <i class="nav-icon fas fa-file-alt"></i>
                             <p>Order Requests</p>
                         </a>
                     </li>
@@ -92,14 +107,26 @@
                     <li class="nav-header text-white">Menu</li>
                     <li class="nav-item">
                         <a href="{{ route('komponen.index') }}" class="nav-link @yield('komponen')">
-                            <i class="nav-icon ion ion-person-add"></i>
+                            <i class="nav-icon fas fa-cube"></i>
                             <p>Master Komponen</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('mesin.index') }}" class="nav-link @yield('mesin')">
-                            <i class="nav-icon ion ion-person-add"></i>
+                            <i class="nav-icon fas fa-tools"></i>
                             <p>Master Mesin</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('hasil-wip.index') }}" class="nav-link @yield('hasilwip')">
+                            <i class="nav-icon fas fa-industry"></i>
+                            <p>Hasil Wip</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('hasil-produksi.index') }}" class="nav-link @yield('hasil-produksi')">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>Hasil Produksi</p>
                         </a>
                     </li>
                 @endif
@@ -113,26 +140,32 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('komponen.index') }}" class="nav-link @yield('komponen')">
-                            <i class="nav-icon ion ion-person-add"></i>
+                            <i class="nav-icon fas fa-cube"></i>
                             <p>Master Komponen</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('mesin.index') }}" class="nav-link @yield('mesin')">
-                            <i class="nav-icon ion ion-person-add"></i>
+                            <i class="nav-icon fas fa-tools"></i>
                             <p>Master Mesin</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('order_requests.index') }}" class="nav-link @yield('order_request')">
-                            <i class="nav-icon ion ion-person-add"></i>
+                            <i class="nav-icon fas fa-file-alt"></i>
                             <p>Order Requests</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('wip_komponen.index') }}" class="nav-link @yield('wipkomponen')">
-                            <i class="nav-icon ion ion-person-add"></i>
+                            <i class="nav-icon fas fa-boxes"></i>
                             <p>Wip Komponen</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('hasil-produksi.index') }}" class="nav-link @yield('hasil-produksi')">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>Hasil Produksi</p>
                         </a>
                     </li>
                 @endif

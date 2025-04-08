@@ -60,7 +60,7 @@
                                                 <td>
                                                     @if ($request->status == 'pending')
                                                         <span class="badge badge-warning">Pending</span>
-                                                    @elseif ($request->status == 'selesai')
+                                                    @elseif ($request->status == 'Selesai')
                                                         <span class="badge badge-success">Selesai</span>
                                                     @elseif ($request->status == 'diproses')
                                                         <span class="badge badge-primary">Proses</span>
@@ -70,18 +70,19 @@
                                                 </td>
                                                 <td>
                                                     <button
-                                                        class="btn btn-primary btn-sm open-modal"
-                                                        data-id="{{ $request->komponen->id }}"
-                                                        data-kode="{{ $request->komponen->kode_komponen }}"
-                                                        data-nama="{{ $request->komponen->nama_komponen }}"
-                                                        data-operator="{{ $request->operator->name }}"
-                                                        data-jumlah="{{ $request->jumlah }}"
-                                                        data-jenis="{{ $request->jenis_komponen }}"
-                                                        data-dedline="{{ $request->tanggal_dedline }}"
+                                                    class="btn btn-primary btn-sm open-modal"
+                                                    data-id="{{ $request->komponen->id }}"
+                                                    data-kode="{{ $request->komponen->kode_komponen }}"
+                                                    data-nama="{{ $request->komponen->nama_komponen }}"
+                                                    data-operator="{{ $request->operator->name }}"
+                                                    data-jumlah="{{ $request->jumlah }}"
+                                                    data-jenis="{{ $request->jenis_komponen }}"
+                                                    data-dedline="{{ $request->tanggal_dedline }}"
+                                                    @if($request->status == 'Selesai') disabled @endif
+                                                >
+                                                    <i class="fa fa-plus"></i> Finish Hasil
+                                                </button>
 
-                                                    >
-                                                        <i class="fa fa-plus"></i> Finish Hasil
-                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach

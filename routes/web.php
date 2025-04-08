@@ -6,6 +6,7 @@ use App\Http\Controllers\profileController;
 use App\Http\Controllers\Admin\mesinController;
 use App\Http\Controllers\Admin\KomponenController;
 use App\Http\Controllers\Admin\WipKomponenController;
+use App\Http\Controllers\Admin\HasilProduksiController;
 use App\Http\Controllers\Admin\{adminController,dashboardController, OrderRequestController};
 
 /*
@@ -84,7 +85,21 @@ Route::get('/order', [orderController::class, 'index'])->name('order.index');
 Route::resource('/wip_komponen', WipKomponenController::class);
 
 
+});
+
+
+
+Route::middleware(['OperatorMesinLatex'])->group( function(){
+// crud hasil produksi
+Route::resource('hasil-produksi', HasilProduksiController::class)->only(['index', 'store', 'destroy']);
+
+Route::get('/hasil-wip', [orderController::class, 'wip'])->name('hasil-wip.index');
+
+Route::get('/hasil-produksi/export-pdf', [HasilProduksiController::class, 'exportPdf'])->name('hasil-produksi.export-pdf');
 
 });
+
+
+
 
 });

@@ -41,4 +41,10 @@ class WipKomponen extends Model
         return $this->belongsTo(Komponen::class, 'kode_komponen_id');
     }
 
+    public function HasilProduksi()
+    {
+        return $this->hasMany(HasilProduksi::class, 'produksi_id');
+
+    }
+
 }
